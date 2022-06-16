@@ -5,4 +5,4 @@ Created on Wed Jul  4 14:00:33 2018
 @author: ZechT
 """
 
-from compute.FitSAS import *
+from fitting.FitSAS import *
