@@ -8,9 +8,6 @@ Created on Wed Jul  4 14:00:33 2018
 import subprocess
 import json
 import time
-
-
-
     
 
 class fit():
