@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import sys
 from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
@@ -9,14 +10,13 @@ import time as time
 
 class AgBehCalib(object):
     
-    def __init__(self,type,file,SDD,points=None,macro=None,newMacro=False):
-        if type=='Fit2D':
-            self.fit2Dexe = 'fit2d_beta_18_002_Windows7_intel32.exe'
+    def __init__(self,Type,file,SDD,points=None,macro=None,newMacro=True):
+        if Type=='Fit2D':
+            self.fit2Dexe = '../fit2D.exe'
             
         self.AgBeh = file
         self.Calibration = {}
         self.logFile = str(np.datetime64('today','D'))+'.log'
-        self.fit2Dexe = fit2Dexe
         self.MacroPath = macro
         if not newMacro:
             self.parse(macro)
@@ -45,6 +45,7 @@ class AgBehCalib(object):
             subprocess.call(urlWindows,shell=True)
         else:
             subprocess.call(urlLinux,shell=True)
+        
 
     def setFit2Dexe(self,exe):
         self.fit2Dexe = exe

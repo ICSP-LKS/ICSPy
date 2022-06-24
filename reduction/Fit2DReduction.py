@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from matplotlib.widgets import Button
 import subprocess
 import time as time
-
+from CalibrantHandler import AgBehCalib
 
 class ReduceData(object):
     
@@ -216,19 +216,19 @@ class GetStatData(object):
 
 def main():
     import sys,os
-    fit2Dexe = r"C:\Users\ZechT\Desktop\fit2d_beta_18_002_Windows7_intel32.exe"
-    AgBehMacroPath = r"M:\Vaxster\181119_ILLProben\macro1600.my"
+    fit2Dexe = r"C:/Users/ZechT/Desktop/fit2d_beta_18_002_Windows7_intel32.exe"
+    AgBehMacroPath = r""
     if not os.path.isfile(AgBehMacroPath):
-        c = AgBehCalib(fit2Dexe,r'M:\\Vaxster\\181119_ILLProben\\images\\im_0066708_craw.tiff',250)
+        c = AgBehCalib('Fit2D',r'E:/Daten/Vaxster/181119_ILLProben/images/im_0066708_craw.tiff',250)
     else:
-        c = AgBehCalib(fit2Dexe,r'M:\\Vaxster\\181119_ILLProben\\images\\im_0066708_craw.tiff',250,
+        c = AgBehCalib('Fit2D',r'E:/Daten/Vaxster/181119_ILLProben/images/im_0066708_craw.tiff',250,
            macro=AgBehMacroPath)
     Calib1500 = c.getCalibration()
-    InDir = r'M:\\Vaxster\\181119_ILLProben\\images\\'
-    OutDir = r'C:\\Users\\ZechT\\Documents\\test\\data\\'
-    StatOutDir = r'C:\\Users\\ZechT\\Documents\\test\\stat\\'
-    Mask1500 = r'M:\\Vaxster\\181119_ILLProben\\181119_SDD1500_mask.msk'
-    Mask150 = r'M:\\Vaxster\\181119_ILLProben\\181119_SDD150_mask.msk'
+    InDir = r'E:/Daten/Vaxster/181119_ILLProben/images/'
+    OutDir = r'C:/Users/ZechT/Documents/test/data/'
+    StatOutDir = r'C:/Users/ZechT/Documents/test/stat/'
+    Mask1500 = r'E:/Daten/Vaxster/181119_ILLProben/181119_SDD1500_mask.msk'
+    Mask150 = r'E:/Daten/Vaxster/181119_ILLProben/181119_SDD150_mask.msk'
     
     ListID150 = [67101,66978,66981,66984,66987]
     ListID1500 = [67104,66993,66996,66999,67002]
