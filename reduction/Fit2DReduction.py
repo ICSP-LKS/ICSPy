@@ -24,6 +24,7 @@ class ReduceData(object):
         self.Calib = Calib
         self.prefix = prefix
         self.suffix = suffix
+        print(fit2Dexe+'\n\n\n\n')
         self.p = subprocess.Popen([fit2Dexe,"-com"],stdin=subprocess.PIPE,stdout=subprocess.PIPE,universal_newlines=True,shell=False)
         if compute:
             self.compute()
@@ -216,8 +217,8 @@ class GetStatData(object):
 
 def main():
     import sys,os
-    fit2Dexe = r"C:/Users/ZechT/Desktop/fit2d_beta_18_002_Windows7_intel32.exe"
-    AgBehMacroPath = r""
+    fit2Dexe = r"fit2D.exe"
+    AgBehMacroPath = "ddd"#r""
     if not os.path.isfile(AgBehMacroPath):
         c = AgBehCalib('Fit2D',r'E:/Daten/Vaxster/181119_ILLProben/images/im_0066708_craw.tiff',250)
     else:

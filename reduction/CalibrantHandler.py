@@ -12,7 +12,7 @@ class AgBehCalib(object):
     
     def __init__(self,Type,file,SDD,points=None,macro=None,newMacro=True):
         if Type=='Fit2D':
-            self.fit2Dexe = '../fit2D.exe'
+            self.fit2Dexe = 'C:/Users/ZechT/Programme/ICSPy/fit2D.exe'
             
         self.AgBeh = file
         self.Calibration = {}
@@ -28,15 +28,17 @@ class AgBehCalib(object):
             self.fig = plt.figure()
             self.ax = self.fig.add_subplot(111)
             def Finished(event):
-                if self.length>10:
+                if self.length>5:
                     self.compute()
             axnext = plt.axes([0.81, 0.05, 0.1, 0.075])
-            self.bnext = Button(axnext, 'Finish (>15 points)')        
+            self.bnext = Button(axnext, 'Finish (>5 points)')        
             self.bnext.on_clicked(Finished)    
                 
             if points is None:
                 self.points=[]
                 self.getPoints()
+            plt.show()
+            plt.ion()
 
     def downloadFit2D(self):
         urlWindows="http://ftp.esrf.eu/pub/expg/FIT2D/fit2d_beta_18_002_Windows7_intel32.exe"
@@ -66,7 +68,7 @@ class AgBehCalib(object):
         im = Image.open(self.AgBeh)
         self.fig.canvas.mpl_connect('button_press_event', onclick)        
         image = np.flipud(np.array(im))
-        self.ax.imshow(np.log10(image))      
+        self.ax.imshow(np.log10(image))  
         
     def showPoints(self):
         im = Image.open(self.AgBeh)
@@ -90,6 +92,7 @@ class AgBehCalib(object):
         return strPoints
         
     def compute(self):
+        plt.close('all')
         p = subprocess.Popen([self.fit2Dexe,"-com"],stdin=subprocess.PIPE,stdout=subprocess.PIPE,universal_newlines=True)
         parsed_string = ''
         parsed_string+='SAXS / GISAXS\nINPUT\n'+self.AgBeh+'\n'
